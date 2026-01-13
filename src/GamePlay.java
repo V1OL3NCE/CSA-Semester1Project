@@ -12,22 +12,44 @@ public class GamePlay {
         Scanner scan = new Scanner(System.in);
         Enemy enemy = new Enemy();
         while (!isGameOver()) {
-            System.out.println("You are on stage " + stage);
-            System.out.println("You have encountered an enemy");
-            while (!enemy.isDead() && !player.isDead()) {
 
-                System.out.println("Enemy hp is " + enemy.getHp());
+            while (!isGameOver() && !enemy.isDead() && !player.isDead()) {//while both are still alive
+                if (enemy.getHp() == enemy.getMaxHp()) {
+                    System.out.println("STAGE " + stage + "!");
+                    System.out.println("You have encountered an enemy!");
+                }
+                //print out stats
+                System.out.println("PLAYER STATS -> hp: " + player.getHp() + "| def: " + player.getDef() + "| atk: " + player.getAtk());
+                System.out.println("ENEMY STATS  -> hp: " + enemy.getHp() + "| def: " + enemy.getDef() + "| atk: " + enemy.getAtk());
                 System.out.println("Press enter to attack");
                 scan.nextLine();
-                enemy.setHp(enemy.getHp() - player.getAtk());
+                if (player.getAtk() > enemy.getDef()) {//if not, then atk will not do dmg
+                    enemy.setHp(enemy.getHp() - (player.getAtk() - enemy.getDef()));//decrease enemy hp by the difference between player atk and enemy def
+                }
                 System.out.println("Enemy's hp is now " + enemy.getHp());
+                //if enemy is dead, go to next stage
                 if (enemy.isDead()) {
                     System.out.println("You have defeated the enemy!");
                     stage++;
+                    //increases enemy hp by 3 and player hp by 5
+                    enemy.setMaxHp(enemy.getMaxHp() + 3);
+                    enemy.setHp(enemy.getMaxHp());
+                    player.setMaxHp(player.getMaxHp() + 5);
+                    player.setHp(player.getMaxHp());
+                    //increase enemy attack by .5 and player attack by 1
+                    enemy.setAtk(enemy.getAtk() + .5);
+                    player.setAtk(player.getAtk() + 1);
+                    //increase enemy def by .2 and player def by .4
+                    enemy.setDef(enemy.getDef() + .2);
+                    player.setDef(player.getDef() + .4);
+                //enemy is not dead and will now attack player
                 } else {
                     System.out.println("Enemy attacks");
-                    player.setHp(player.getHp() - enemy.getAtk());
+                    if (enemy.getAtk() > player.getDef()) {//if not, then atk will not do dmg
+                        player.setHp(player.getHp() - (enemy.getAtk() - player.getDef()));//decrease player hp by the difference between enemy atk and player def
+                    }
                     System.out.println("Your hp is now " + player.getHp());
+                    //if player is dead then go back to previous stage
                     if (player.isDead()) {
                         System.out.println("You have died!");
                         System.out.println("returning to previous stage");
@@ -35,15 +57,18 @@ public class GamePlay {
                     }
                 }
             }
-            enemy.setMaxHp(enemy.getMaxHp() + 3);
-            enemy.setHp(enemy.getMaxHp());
-
         }
+        System.out.println("Game over!");
+        System.out.println("-----------");
+        System.out.println("Your stats:");
+        System.out.println("HP: " + player.getHp());
+        System.out.println("DEF: " + player.getDef());
+        System.out.println("ATK: " + player.getAtk());
     }
 
 
     public boolean isGameOver() {
-        return stage >= 60;
+        return stage >= 10;
     }
 
 }

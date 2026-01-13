@@ -39,9 +39,9 @@ public class Player {
         this.hp = hp;
     }
 
-    public boolean isDead() {
-        return this.hp == 0;
-    }
+    public void setMaxHp(double maxHp) {this.maxHp = maxHp;}
+
+    public boolean isDead() {return this.hp <= 0;}
 
 
 

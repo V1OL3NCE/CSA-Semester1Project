@@ -44,7 +44,7 @@ public class Enemy {
     }
 
     public boolean isDead() {
-        return hp == 0;
+        return hp <= 0;
     }
 
 
