@@ -1,13 +1,13 @@
-public class Enemy {
+public class Player {
     private double atk;
     private double def;
     private double hp;
     private double maxHp;
 
-    public Enemy() {
-        atk = 4;
-        def = 1;
-        hp = 15;
+    public Player() {
+        atk = 5;
+        def = 2;
+        hp = 25;
         maxHp = hp;
     }
 
@@ -39,13 +39,10 @@ public class Enemy {
         this.hp = hp;
     }
 
-    public void setMaxHp(double maxHp) {
-        this.maxHp = maxHp;
+    public boolean isDead() {
+        return this.hp == 0;
     }
 
-    public boolean isDead() {
-        return hp == 0;
-    }
 
 
 }
