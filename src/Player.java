@@ -15,12 +15,24 @@ public class Player {
         return atk;
     }
 
+    public String getAtkRounded() {
+        return String.format("%.2f", getAtk());
+    }
+
     public double getDef() {
         return def;
     }
 
+    public String getDefRounded() {
+        return String.format("%.2f", getDef());
+    }
+
     public double getHp() {
         return hp;
+    }
+
+    public String getHpRounded() {
+        return String.format("%.2f", getHp());
     }
 
     public double getMaxHp() {
@@ -30,6 +42,8 @@ public class Player {
     public void setAtk(double atk) {
         this.atk = atk;
     }
+
+
 
     public void setDef(double def) {
         this.def = def;

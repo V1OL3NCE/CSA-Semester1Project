@@ -19,14 +19,14 @@ public class GamePlay {
                     System.out.println("You have encountered an enemy!");
                 }
                 //print out stats
-                System.out.println("PLAYER STATS -> hp: " + player.getHp() + "| def: " + player.getDef() + "| atk: " + player.getAtk());
-                System.out.println("ENEMY STATS  -> hp: " + enemy.getHp() + "| def: " + enemy.getDef() + "| atk: " + enemy.getAtk());
+                System.out.println("PLAYER STATS -> hp: " + player.getHpRounded() + "| def: " + player.getDefRounded() + "| atk: " + player.getAtkRounded());
+                System.out.println("ENEMY STATS  -> hp: " + enemy.getHpRounded() + "| def: " + enemy.getDefRounded() + "| atk: " + enemy.getAtkRounded());
                 System.out.println("Press enter to attack");
                 scan.nextLine();
                 if (player.getAtk() > enemy.getDef()) {//if not, then atk will not do dmg
                     enemy.setHp(enemy.getHp() - (player.getAtk() - enemy.getDef()));//decrease enemy hp by the difference between player atk and enemy def
                 }
-                System.out.println("Enemy's hp is now " + enemy.getHp());
+                System.out.println("Enemy's hp is now " + enemy.getHpRounded());
                 //if enemy is dead, go to next stage
                 if (enemy.isDead()) {
                     System.out.println("You have defeated the enemy!");
@@ -48,7 +48,7 @@ public class GamePlay {
                     if (enemy.getAtk() > player.getDef()) {//if not, then atk will not do dmg
                         player.setHp(player.getHp() - (enemy.getAtk() - player.getDef()));//decrease player hp by the difference between enemy atk and player def
                     }
-                    System.out.println("Your hp is now " + player.getHp());
+                    System.out.println("Your hp is now " + player.getHpRounded());
                     //if player is dead then go back to previous stage
                     if (player.isDead()) {
                         System.out.println("You have died!");
@@ -58,12 +58,12 @@ public class GamePlay {
                 }
             }
         }
-        System.out.println("Game over!");
+        System.out.println("Game over! YOU WIN!");
         System.out.println("-----------");
         System.out.println("Your stats:");
-        System.out.println("HP: " + player.getHp());
-        System.out.println("DEF: " + player.getDef());
-        System.out.println("ATK: " + player.getAtk());
+        System.out.println("HP: " + player.getHpRounded());
+        System.out.println("DEF: " + player.getDefRounded());
+        System.out.println("ATK: " + player.getAtkRounded());
     }
 
 

@@ -15,12 +15,24 @@ public class Enemy {
         return atk;
     }
 
+    public String getAtkRounded() {
+        return String.format("%.2f", getAtk());
+    }
+
     public double getDef() {
         return def;
     }
 
+    public String getDefRounded() {
+        return String.format("%.2f", getDef());
+    }
+
     public double getHp() {
-        return hp;
+        return Math.max(0, hp);
+    }
+
+    public String getHpRounded() {
+        return String.format("%.2f", getHp());
     }
 
     public double getMaxHp() {
