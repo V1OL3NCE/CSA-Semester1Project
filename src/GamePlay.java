@@ -1,12 +1,31 @@
 import java.util.Scanner;
 
+/**
+ * This class starts the game feature
+ *
+ * @author Justin Zheng
+ */
 public class GamePlay {
+    /**
+     *The current stage the player is on
+     */
     private int stage;
 
+    /**
+     * Instantiates a GamePlay object.
+     */
     public GamePlay() {
         stage = 1;
     }
 
+    /**
+     * Method called to begin the game
+     * Display stats at the beginning of player's turn
+     * Attacks do damage equal to the difference between player attack and enemy defense, or enemy attack and player defense
+     * If player dies, return to previous stage
+     * <p>
+     * loop while the isGameOver boolean is false
+     */
     public void play() {
         Player player = new Player();
         Scanner scan = new Scanner(System.in);
@@ -66,7 +85,10 @@ public class GamePlay {
         System.out.println("ATK: " + player.getAtkRounded());
     }
 
-
+    /**
+     * method that checks if the game is over
+     * @return true if the game is over
+     */
     public boolean isGameOver() {
         return stage >= 10;
     }
